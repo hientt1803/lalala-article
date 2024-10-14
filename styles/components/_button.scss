@@ -1,0 +1,34 @@
+.btn-hover-slide {
+    z-index: 1;
+    position: relative;
+    font-size: inherit;
+    font-family: inherit;
+    outline: none;
+    border: none;
+    transition: 0.3s all ease-in;
+}
+
+.btn-hover-slide::before {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #212121;
+    color: #fff;
+    transform-origin: center right;
+    transform: scaleX(0);
+    border-radius: 9999px;
+    transition: transform 0.25s ease-in-out;
+}
+
+.btn-hover-slide:hover {
+    cursor: pointer;
+}
+
+.btn-hover-slide:hover::before {
+    transform-origin: center left;
+    transform: scaleX(1);
+}

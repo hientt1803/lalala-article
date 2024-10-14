@@ -1,0 +1,29 @@
+.controls {
+    transition: opacity 150ms ease;
+    opacity: 0;
+}
+
+.root {
+    &:hover {
+        .controls {
+            opacity: 1;
+        }
+    }
+}
+
+.control {
+    &[data-inactive] {
+        opacity: 0;
+        cursor: default;
+    }
+}
+
+.indicator {
+    width: 12px;
+    height: 4px;
+    transition: width 250ms ease;
+
+    &[data-active] {
+        width: 40px;
+    }
+}

@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --foreground-rgb: 0, 0, 0;
+        --background-start-rgb: 214, 219, 220;
+        --background-end-rgb: 255, 255, 255;
+    }
+}
+
+body {
+    /* color: rgb(var(--foreground-rgb)); */
+    /* background: linear-gradient(
+    to bottom,
+    transparent,
+    rgb(var(--background-end-rgb))
+  )
+  rgb(var(--background-start-rgb)); */
+    background: #fff;
+    // background: #fff !important;
+    /* max-width: 450px;
+margin-left: auto;
+margin-right: auto; */
+}
+
+@media (min-width: 768px) {
+    body {
+        background: #fff;
+    }
+}
+
+@layer utilities {
+    .text-balance {
+        text-wrap: balance;
+    }
+}
+
+.blockquote-style::before {
+    content: '“';
+    font-size: 3rem;
+    /* Adjust size for styling */
+    color: #333;
+    margin-right: 0.2rem;
+}
+
+.blockquote-style::after {
+    content: '”';
+    font-size: 3rem;
+    /* Adjust size for styling */
+    color: #333;
+    margin-left: 0.2rem;
+}
+
+// responsive mobile design (old version)
+// Mantine CSS
+// .mantine-Drawer-inner {
+//   display: flex;
+//   justify-content: center;
+// }
+
+.text-overflow-clamp {
+    width: 100%;
+    /* Full width */
+    overflow: hidden;
+    /* Hides overflowed content */
+    display: -webkit-box;
+    /* Required for -webkit-line-clamp */
+    -webkit-box-orient: vertical;
+    /* Required for -webkit-line-clamp */
+    -webkit-line-clamp: 3;
+    /* Limits text to 3 lines */
+}
