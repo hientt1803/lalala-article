@@ -51,3 +51,4 @@ export const MainModalComponent = (props: IMainModal) => {
 };
 
 export const MainModal = React.memo(MainModalComponent);
+// hmm agjkadlg
