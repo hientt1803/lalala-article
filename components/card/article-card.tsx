@@ -1,5 +1,7 @@
 import { MainCard } from "@/components/card";
 import { cn } from "@/lib";
+import { IArticleType } from "@/stores/features/posts";
+import { capitalizeFirstLetter, formatDateUTC } from "@/utils";
 import { Image } from "@mantine/core";
 import Link from "next/link";
 import React from "react";
@@ -7,9 +9,7 @@ import React from "react";
 export type ArticleCardType = "horizontal" | "verticle" | "onlyImage";
 
 type ArticleCardProps = {
-  article: {
-    image?: string;
-  };
+  article: IArticleType;
   displayType?: ArticleCardType;
   className?: string;
   imageStyle?: string;
@@ -36,7 +36,11 @@ export const ArticleCard = React.memo(
             color: textColor,
           }}
         >
-          Type of trip • City breaks • Festivals
+          {!article?.taxonomy ? "General • Blog • Daily" : article?.taxonomy?.map((txm, index) => (
+            <React.Fragment key={txm.taxonomy_id}>
+              {capitalizeFirstLetter(txm.taxonomy_name || "")} {index !== article?.taxonomy.length - 1 && "   •   "}
+            </React.Fragment>
+          ))}
         </div>
 
         <span
@@ -48,7 +52,7 @@ export const ArticleCard = React.memo(
             color: textColor == "white" ? "white" : "black",
           }}
         >
-          5 Travel Proud properties in Amsterdam
+          {article?.post_name || "This is post content"}
         </span>
 
         <span
@@ -57,7 +61,7 @@ export const ArticleCard = React.memo(
             color: textColor,
           }}
         >
-          June 13
+          {formatDateUTC(new Date(article?.created_at) || new Date())}
         </span>
       </div>
     );
@@ -65,11 +69,11 @@ export const ArticleCard = React.memo(
     return (
       <React.Fragment>
         {displayType === "onlyImage" ? (
-          <Link href="/slug-example">
+          <Link href={`/${article?.id || "1010599559711981569"}`}>
             <MainCard className="min-w-full w-full min-h-[25rem] h-full group">
               <div className="relative min-w-full w-full min-h-[25rem] h-full rounded-md overflow-hidden">
                 <Image
-                  src={article.image || "/assets/images/offer-image-home.jpeg"}
+                  src={article?.attachment[0]?.url_file || "/assets/images/article/detail/content-4.jpg"}
                   alt={"alt"}
                   w={"100%"}
                   h={"100%"}
@@ -93,7 +97,7 @@ export const ArticleCard = React.memo(
             </MainCard>
           </Link>
         ) : (
-          <Link href="/slug-example">
+          <Link href={`/${article?.id || "1010599559711981569"}`}>
             <MainCard
               className={cn(
                 "flex gap-2 bg-transparent group",
@@ -102,12 +106,11 @@ export const ArticleCard = React.memo(
               )}
             >
               <div
-                className={`relative min-w-full w-full ${
-                  imageStyle ? imageStyle : "min-h-[18.125rem]"
-                } h-full rounded-md overflow-hidden`}
+                className={`relative min-w-full w-full ${imageStyle ? imageStyle : "min-h-[18.125rem]"
+                  } h-full rounded-md overflow-hidden`}
               >
                 <Image
-                  src={article.image || "/assets/images/offer-image-home.jpeg"}
+                  src={article?.attachment[0]?.url_file || "/assets/images/article/detail/content-4.jpg"}
                   alt={"alt"}
                   w={displayType === "verticle" ? "100%" : "50%"}
                   h={"100%"}

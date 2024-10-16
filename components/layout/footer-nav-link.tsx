@@ -1,6 +1,4 @@
-"use client";
-
-import { Container, Grid, Stack, Text } from "@mantine/core";
+import { Container, Stack, Text } from "@mantine/core";
 import Link from "next/link";
 import React from "react";
 
@@ -55,8 +53,8 @@ const FOOTER_LINK = [
 const FooterNavLink = () => {
   return (
     <Container size={"lg"} mt={30}>
-      <Grid grow gutter={{ base: 5, xs: "md", md: "xl", xl: 50 }}>
-        <Grid.Col span={2} mb={50}>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 mb-5 pt-5 md:mb-0">
+        <div>
           <Text size="sm" fw={700} mb={15}>
             Support
           </Text>
@@ -70,9 +68,9 @@ const FooterNavLink = () => {
               </Link>
             </Stack>
           ))}
-        </Grid.Col>
+        </div>
 
-        <Grid.Col span={2} mb={50}>
+        <div>
           <Text size="sm" fw={700} mb={15}>
             Discover
           </Text>
@@ -86,9 +84,9 @@ const FooterNavLink = () => {
               </Link>
             </Stack>
           ))}
-        </Grid.Col>
+        </div>
 
-        <Grid.Col span={2} mb={50}>
+        <div>
           <Text size="sm" fw={700} mb={15}>
             Terms and settings
           </Text>
@@ -102,9 +100,9 @@ const FooterNavLink = () => {
               </Link>
             </Stack>
           ))}
-        </Grid.Col>
+        </div>
 
-        <Grid.Col span={2} mb={50}>
+        <div>
           <Text size="sm" fw={700} mb={15}>
             Partners
           </Text>
@@ -118,9 +116,9 @@ const FooterNavLink = () => {
               </Link>
             </Stack>
           ))}
-        </Grid.Col>
+        </div>
 
-        <Grid.Col span={2} mb={50}>
+        <div>
           <Text size="sm" fw={700} mb={15}>
             About
           </Text>
@@ -134,7 +132,7 @@ const FooterNavLink = () => {
               </Link>
             </Stack>
           ))}
-        </Grid.Col>
+        </div>
 
         {/* <Grid.Col span={4} mb={50}>
           {FOOTER_LINK.slice(25, 30).map((item, index) => (
@@ -145,7 +143,7 @@ const FooterNavLink = () => {
             </Stack>
           ))}
         </Grid.Col> */}
-      </Grid>
+      </div>
     </Container>
   );
 };

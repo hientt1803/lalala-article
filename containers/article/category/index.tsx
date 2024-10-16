@@ -1,3 +1,4 @@
+import { getListArticle } from "@/services";
 import { convertToTitleCase } from "@/utils";
 import { Container, Divider } from "@mantine/core";
 import { ArticleLayoutGrid } from "../components/layout/layout-grid";
@@ -72,65 +73,18 @@ const CategoryTags = [
   },
 ];
 
-const shuffleArray = (array: any[]) => {
-  return array.sort(() => Math.random() - 0.5);
-};
-
-const components = [
-  <ArticleLayoutMansory key="1" title="Couple getaways" listArticle={""} />,
-  <ArticleLayoutGrid
-    key="2"
-    title="Active trips"
-    withCaroucel
-    listArticle={""}
-  />,
-  <ArticleLayoutMansory key="3" title="Summer ready" listArticle={""} />,
-  <ArticleLayoutHighLighFirstCard
-    key="4"
-    title="Unique stays"
-    listArticle={""}
-    cardType="verticle"
-  />,
-  <ArticleLayoutGrid
-    key="5"
-    title="Solo travel"
-    listArticle={""}
-    className="py-6"
-  />,
-  <ArticleLayoutHighLighFirstCard
-    key="6"
-    title="Luxury escape"
-    listArticle={""}
-    cardType="verticle"
-  />,
-  <ArticleLayoutHighLighFirstCard
-    key="7"
-    title="Family holiday"
-    listArticle={""}
-    cardType="verticle"
-  />,
-  <ArticleLayoutGrid
-    key="8"
-    title="Journey Through Asia"
-    listArticle={""}
-    withCaroucel
-    className="py-6"
-  />,
-];
-
-export const ArticleCategoryContainer = ({ slug }: { slug: string[] }) => {
-  const shuffledComponents = shuffleArray(components);
+export const ArticleCategoryContainer = async ({ slug }: { slug: string[] }) => {
+  const listArticle = await getListArticle();
 
   return (
     <section>
-      <ArticleBannerCaroucel />
+      <ArticleBannerCaroucel listArticle={listArticle} />
 
       <Container size="lg">
         <h1 className="text-[4rem] fw-[800] font-extrabold text-center mx-auto max-w-[60.5rem] mt-10">
           {slug.map(
             (item, index) =>
-              `${convertToTitleCase(item)} ${
-                index !== slug.length - 1 ? "/" : ""
+              `${convertToTitleCase(item)} ${index !== slug.length - 1 ? "/" : ""
               }`
           )}
         </h1>
@@ -164,7 +118,45 @@ export const ArticleCategoryContainer = ({ slug }: { slug: string[] }) => {
         </div>
       </Container>
 
-      {shuffledComponents}
+      <ArticleLayoutMansory key="1" title="Couple getaways" listArticle={listArticle} />,
+      <ArticleLayoutGrid
+        key="2"
+        title="Active trips"
+        withCaroucel
+        listArticle={listArticle}
+      />,
+      <ArticleLayoutMansory key="3" title="Summer ready" listArticle={listArticle} />,
+      <ArticleLayoutHighLighFirstCard
+        key="4"
+        title="Unique stays"
+        listArticle={listArticle}
+        cardType="verticle"
+      />,
+      <ArticleLayoutGrid
+        key="5"
+        title="Solo travel"
+        listArticle={listArticle}
+        className="py-6"
+      />,
+      <ArticleLayoutHighLighFirstCard
+        key="6"
+        title="Luxury escape"
+        listArticle={listArticle}
+        cardType="verticle"
+      />,
+      <ArticleLayoutHighLighFirstCard
+        key="7"
+        title="Family holiday"
+        listArticle={listArticle}
+        cardType="verticle"
+      />,
+      <ArticleLayoutGrid
+        key="8"
+        title="Journey Through Asia"
+        listArticle={listArticle}
+        withCaroucel
+        className="py-6"
+      />,
     </section>
   );
 };

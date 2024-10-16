@@ -1,20 +1,29 @@
-import {
-  MantineCaroucel,
-  MantineCaroucelSlide,
-} from "@/components/caroucel/mantine-caroucel";
 import React from "react";
 import { Container } from "@mantine/core";
 import { cn } from "@/lib";
 import { ArticleCard, ArticleCardType } from "@/components/card";
+import { IArticleType } from "@/stores/features/posts";
+import dynamic from "next/dynamic";
 
 type ArticleLayoutGrid = {
-  listArticle: any;
+  listArticle: IArticleType[];
   withCaroucel?: boolean;
   backgroundColor?: string;
   title: string;
   cardType?: ArticleCardType;
   className?: string;
 };
+
+const MantineCaroucel = dynamic(() =>
+  import("@/components/caroucel/mantine-caroucel")
+    .then((mob) => mob.MantineCaroucel), {
+  ssr: false
+})
+const MantineCaroucelSlide = dynamic(() =>
+  import("@/components/caroucel/mantine-caroucel")
+    .then((mob) => mob.MantineCaroucelSlide), {
+  ssr: false
+})
 
 export const ArticleLayoutGrid = (props: ArticleLayoutGrid) => {
   const {
@@ -42,53 +51,28 @@ export const ArticleLayoutGrid = (props: ArticleLayoutGrid) => {
             height={"100%"}
             slideSize={{ base: "100%", sm: "50%", md: "33.333333%" }}
           >
-            <MantineCaroucelSlide width={"100%"}>
-              <ArticleCard
-                article={{
-                  image: "/assets/images/article/detail/content-1.jpg",
-                }}
-                displayType={cardType}
-              />
-            </MantineCaroucelSlide>
-            <MantineCaroucelSlide width={"100%"}>
-              <ArticleCard
-                article={{
-                  image: "/assets/images/article/detail/content-4.jpg",
-                }}
-                displayType={cardType}
-              />
-            </MantineCaroucelSlide>
-            <MantineCaroucelSlide width={"100%"}>
-              <ArticleCard
-                article={{
-                  image: "/assets/images/article/detail/content-3.jpg",
-                }}
-                displayType={cardType}
-              />
-            </MantineCaroucelSlide>
-            <MantineCaroucelSlide width={"100%"}>
-              <ArticleCard
-                article={{
-                  image: "/assets/images/article/detail/content-5.jpg",
-                }}
-                displayType={cardType}
-              />
-            </MantineCaroucelSlide>
+            {
+              listArticle?.map((article) => (
+                <MantineCaroucelSlide width={"100%"} key={article.id}>
+                  <ArticleCard
+                    article={article}
+                    displayType={cardType}
+                  />
+                </MantineCaroucelSlide>
+              ))
+            }
           </MantineCaroucel>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3">
-            <ArticleCard
-              article={{ image: "/assets/images/article/detail/content-4.jpg" }}
-              displayType={cardType}
-            />
-            <ArticleCard
-              article={{ image: "/assets/images/article/detail/content-3.jpg" }}
-              displayType={cardType}
-            />
-            <ArticleCard
-              article={{ image: "/assets/images/article/detail/content-1.jpg" }}
-              displayType={cardType}
-            />
+            {
+              listArticle?.map((article) => (
+                <ArticleCard
+                  key={article.id}
+                  article={article}
+                  displayType={cardType}
+                />
+              ))
+            }
           </div>
         )}
       </Container>

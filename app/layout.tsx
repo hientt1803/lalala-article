@@ -20,7 +20,7 @@ export const meta = {
   title: "LaLaLa - Inspiring Travel Blogs & Guides",
   description:
     "Discover inspiring travel stories, tips, and guides at LaLaLa Blog - Your source for travel ideas and advice.",
-  image: `${HOST_URL}/assets/favicon/lalala-blog.svg`,
+  image: `${HOST_URL}/assets/favicon/lalala.svg`,
 };
 
 export const metadata: Metadata = {

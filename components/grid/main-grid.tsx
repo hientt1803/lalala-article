@@ -1,6 +1,8 @@
 "use client";
+
 import { Grid, MantineSize, StyleProp } from "@mantine/core";
 import React from "react";
+
 interface IMainGrid {
   gutter?: MantineSize | string | number | any;
   onClick?: () => void | any;
@@ -10,6 +12,7 @@ interface IMainGrid {
   className?: string;
   children: React.ReactNode;
 }
+
 const MainGridComponent = (props: IMainGrid) => {
   const { gutter, onClick, grow = false, bg, mt, className, children } = props;
   return (
@@ -43,5 +46,6 @@ const MainGridComponentCol = function MainGridCol({
     </Grid.Col>
   );
 };
+
 export const MainGrid = React.memo(MainGridComponent);
 export const MainGridCol = React.memo(MainGridComponentCol);

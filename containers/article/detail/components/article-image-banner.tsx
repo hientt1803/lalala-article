@@ -1,10 +1,9 @@
 import { Image } from "@mantine/core";
-import React from "react";
 
-export const ArticleImageBanner = () => {
+export const ArticleImageBanner = ({ image }: { image: string }) => {
   return (
     <Image
-      src="/assets/images/article/detail/image-banner.jpg"
+      src={image || "/assets/images/article/detail/image-banner.jpg"}
       w={"100%"}
       h={"100%"}
       mah={520}

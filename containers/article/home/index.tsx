@@ -4,6 +4,7 @@ import { ArticleLayoutMansory } from "../components/layout/layout-mansory";
 import { ArticleCardHorizontal } from "@/components/card";
 import { ArticleLayoutHighLighFirstCard } from "../components/layout/layout-highligh-first-card";
 import dynamic from "next/dynamic";
+import { getListArticle } from "@/services";
 
 const ArticleBannerCaroucel = dynamic(
   () =>
@@ -13,10 +14,12 @@ const ArticleBannerCaroucel = dynamic(
   { ssr: false }
 );
 
-export const AricleContainer = () => {
+export const AricleContainer = async () => {
+  const listArticle = await getListArticle();
+
   return (
     <section>
-      <ArticleBannerCaroucel />
+      <ArticleBannerCaroucel listArticle={listArticle} />
 
       <Divider
         w={150}
@@ -32,11 +35,11 @@ export const AricleContainer = () => {
         className="opacity-50"
       />
 
-      <ArticleLayoutGrid title="Pride" withCaroucel listArticle={""} />
+      <ArticleLayoutGrid title="Pride" withCaroucel listArticle={listArticle} />
 
-      <ArticleLayoutGrid title="Latest" withCaroucel listArticle={""} />
+      <ArticleLayoutGrid title="Latest" withCaroucel listArticle={listArticle} />
 
-      <ArticleLayoutMansory title="Summer ready" listArticle={""} />
+      <ArticleLayoutMansory title="Summer ready" listArticle={listArticle} />
 
       <div className="bg-[#f5f5f5] py-10">
         <Container size="lg">
@@ -45,48 +48,45 @@ export const AricleContainer = () => {
           </h1>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 grid-flow-row-dense gap-0">
-            <ArticleCardHorizontal
-              article={{ image: "/assets/images/article/home/image-1.jpg" }}
-            />
-            <ArticleCardHorizontal
-              article={{ image: "/assets/images/article/home/image-2.jpg" }}
-            />
-            <ArticleCardHorizontal
-              article={{ image: "/assets/images/article/home/image-3.jpg" }}
-            />
+            {listArticle.slice(0, 3)?.map((article) => (
+              <ArticleCardHorizontal
+                key={article.id}
+                article={article}
+              />
+            ))}
           </div>
         </Container>
       </div>
 
       <ArticleLayoutHighLighFirstCard
         title="Unique stays"
-        listArticle={""}
+        listArticle={listArticle}
         cardType="verticle"
       />
 
       <ArticleLayoutGrid
         title="The outdoors"
-        listArticle={""}
+        listArticle={listArticle}
         className="py-6"
       />
 
       <ArticleLayoutHighLighFirstCard
         title="Luxury escape"
-        listArticle={""}
+        listArticle={listArticle}
         cardType="verticle"
       />
 
       <ArticleLayoutHighLighFirstCard
         title="Family holiday"
-        listArticle={""}
+        listArticle={listArticle}
         cardType="verticle"
       />
 
-      <ArticleLayoutMansory title="Explore VietNam" listArticle={""} />
+      <ArticleLayoutMansory title="Explore VietNam" listArticle={listArticle} />
 
       <ArticleLayoutGrid
         title="Journey Through Asia"
-        listArticle={""}
+        listArticle={listArticle}
         withCaroucel
         className="py-6"
       />

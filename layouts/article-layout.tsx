@@ -1,6 +1,7 @@
 import { IChildrenProps } from "@/types/common";
+import { Skeleton } from "@mantine/core";
 import dynamic from "next/dynamic";
-import React from "react";
+import React, { Suspense } from "react";
 
 const ScrollToTopButton = dynamic(
   () =>
@@ -24,7 +25,9 @@ export const ArticleLayout = ({ children }: IChildrenProps) => {
       </div>
       <main className="overflow-hidden">{children}</main>
 
-      <ScrollToTopButton />
+      <Suspense fallback={<Skeleton w={30} h={30} className="rounded-full" />}>
+        <ScrollToTopButton />
+      </Suspense>
       <MainFooter />
     </React.Fragment>
   );

@@ -32,3 +32,41 @@
     transform-origin: center left;
     transform: scaleX(1);
 }
+
+.btn-hover-blur {
+    z-index: 1;
+    position: relative;
+    font-size: inherit;
+    font-family: inherit;
+    color: #212121;
+    padding: 0.5em 1em;
+    outline: none;
+    border: none;
+    border: 1px solid #212121;
+}
+
+.btn-hover-blur:hover {
+    cursor: pointer;
+    background: #212121;
+    color: #fff;
+}
+
+.btn-hover-blur::before {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border: 4px solid #212121;
+    transform-origin: center;
+    transform: scale(1);
+}
+
+.btn-hover-blur:hover::before {
+    transition: all 0.75s ease-in-out;
+    transform-origin: center;
+    transform: scale(1.75);
+    opacity: 0;
+}

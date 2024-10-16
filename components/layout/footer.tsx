@@ -41,54 +41,6 @@ const SUB_FOOTER_MENU = [
 const MainFooterComponent = () => {
   return (
     <footer>
-      {/* List property */}
-      <Box bg={"#003b95"} className="block md:hidden">
-        <Stack justify="center">
-          <Button variant="outline" mx={"auto"} mt={10} w={200} color="#fff">
-            List your property
-          </Button>
-          <Divider c={"#f1f1f1"} />
-        </Stack>
-        <Container size={"lg"}>
-          <Group gap={15} justify="center" align="center" p={20}>
-            <Text fw={700} size="xs" className="text-white underline">
-              Desktop version
-            </Text>
-            <Text fw={700} size="xs" className="text-white underline">
-              Term and conditions
-            </Text>
-            <Text fw={700} size="xs" className="text-white underline">
-              How we work
-            </Text>
-            <Text fw={700} size="xs" className="text-white underline">
-              Privacy & Cookies
-            </Text>
-            <Text fw={700} size="xs" className="text-white underline">
-              Morden Slavry statement
-            </Text>
-            <Text fw={700} size="xs" className="text-white underline">
-              Human rights Statement
-            </Text>
-          </Group>
-
-          <Stack align="center" mt={10}>
-            <Text size="xs" className="text-white" ta={"center"}>
-              Copyright © 1996–2024 Lalala.com™. All rights reserved.
-            </Text>
-
-            <Text size="xs" c="white" ta={"center"} pb={15}>
-              Lalala.com is part of Lalala Holdings Inc., the world leader in
-              online travel and related services.
-            </Text>
-
-            {/* <Flex justify={"center"} align={"center"} gap={10}>
-              List of logo here
-            </Flex> */}
-          </Stack>
-        </Container>
-      </Box>
-
-      {/* Desktop footer */}
       <DesktopFooter />
     </footer>
   );
@@ -96,9 +48,9 @@ const MainFooterComponent = () => {
 
 const DesktopFooter = () => {
   return (
-    <div className="hidden md:block pt-10 bg-white">
+    <div className="pt-10 bg-white">
       <Container size={"lg"}>
-        <Flex align="center" gap={0} wrap={"wrap"}>
+        <Flex align="center" className="gap-1 md:gap-0" wrap={"wrap"}>
           {SUB_FOOTER_MENU.map((item, index) => (
             <React.Fragment key={index}>
               <Link href="/">

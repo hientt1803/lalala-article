@@ -14,9 +14,13 @@ const nextConfig = {
   env: {
     NEXT_PUBLIC_HOST_URL: process.env.NEXT_PUBLIC_HOST_URL,
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+  
+    NEXT_PUBLIC_USER_ID: process.env.NEXT_PUBLIC_USER_ID,
+    NEXT_PUBLIC_CHANNEL_ID: process.env.NEXT_PUBLIC_CHANNEL_ID,
+    NEXT_PUBLIC_POST_TYPE: process.env.NEXT_PUBLIC_POST_TYPE,
   },
   experimental: {
-    optimizePackageImports: ["@mantine/core", "@mantine/hooks"],
+    optimizePackageImports: ["@mantine/core", "@mantine/hooks","@mantine/carousel"],
   },
 };
 

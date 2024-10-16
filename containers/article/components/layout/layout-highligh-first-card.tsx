@@ -1,9 +1,10 @@
 import { ArticleCard, ArticleCardType } from "@/components/card";
 import { cn } from "@/lib";
+import { IArticleType } from "@/stores/features/posts";
 import { Container } from "@mantine/core";
 
 type ArticleLayoutHighLighFirstCard = {
-  listArticle: any;
+  listArticle: IArticleType[];
   backgroundColor?: string;
   title: string;
   cardType?: ArticleCardType;
@@ -34,25 +35,22 @@ export const ArticleLayoutHighLighFirstCard = (
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 h-full justify-start items-start min-h-[25rem]">
           <ArticleCard
-            article={{
-              image: "/assets/images/article/home/image-7.jpg",
-            }}
+            article={listArticle[0]}
             displayType={"onlyImage"}
             imageStyle="min-h-[24rem]"
           />
           <div className="grid grid-cols-1 md:grid-cols-2 h-full justify-start items-start min-h-[25rem]">
-            <ArticleCard
-              article={{ image: "/assets/images/article/home/image-6.jpeg" }}
-              displayType={cardType}
-              imageStyle="min-h-[16.875rem]"
-              titleStyle="text-[1.25rem]"
-            />
-            <ArticleCard
-              article={{ image: "/assets/images/article/home/image-8.jpg" }}
-              displayType={cardType}
-              imageStyle="min-h-[16.875rem]"
-              titleStyle="text-[1.25rem]"
-            />
+            {
+              listArticle.slice(1, listArticle.length)?.map((article) => (
+                <ArticleCard
+                  key={article.id}
+                  article={article}
+                  displayType={cardType}
+                  imageStyle="min-h-[16.875rem]"
+                  titleStyle="text-[1.25rem]"
+                />
+              ))
+            }
           </div>
         </div>
       </Container>

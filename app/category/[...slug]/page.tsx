@@ -1,4 +1,5 @@
 import { ArticleCategoryContainer } from "@/containers/article/category";
+import { preLoadGetListArticle } from "@/services";
 import { HOST_URL } from "@/utils";
 import { Metadata, ResolvingMetadata } from "next";
 
@@ -54,6 +55,8 @@ export async function generateMetadata(
 }
 
 const AricleCategorypage = ({ params }: { params: { slug: string[] } }) => {
+  preLoadGetListArticle();
+
   return <ArticleCategoryContainer slug={params.slug} />;
 };
 

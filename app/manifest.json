@@ -1,0 +1,22 @@
+{
+    "name": "LaLaLa - Inspiring Travel Blogs & Guides",
+    "short_name": "Lalala",
+    "description": "Discover inspiring travel stories, tips, and guides at LaLaLa Blog - Your source for travel ideas and advice",
+    "icons": [
+        {
+            "src": "https://sb.lalala.travel/assets/favicon/lalala.svg",
+            "sizes": "192x192",
+            "type": "image/svg"
+        },
+        {
+            "src": "https://sb.lalala.travel/assets/favicon/lalala.svg",
+            "sizes": "512x512",
+            "type": "image/svg"
+        }
+    ],
+    "start_url": "https://sb.lalala.travel/",
+    "background_color": "#f1f1f1",
+    "theme_color": "#ffffff",
+    "display": "standalone",
+    "orientation": "portrait"
+}

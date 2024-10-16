@@ -1,15 +1,28 @@
 import { ArticleCard, ArticleCardType } from "@/components/card";
-import { MainGrid, MainGridCol } from "@/components/grid";
 import { cn } from "@/lib";
+import { IArticleType } from "@/stores/features/posts";
 import { Container } from "@mantine/core";
+import dynamic from "next/dynamic";
 
 type ArticleLayoutMansory = {
-  listArticle: any;
+  listArticle: IArticleType[];
   backgroundColor?: string;
   title: string;
   cardType?: ArticleCardType;
   className?: string;
 };
+
+const MainGrid = dynamic(() =>
+  import("@/components/grid")
+    .then((mob) => mob.MainGrid), {
+  ssr: false
+})
+const MainGridCol = dynamic(() =>
+  import("@/components/grid")
+    .then((mob) => mob.MainGridCol), {
+  ssr: false
+})
+
 
 export const ArticleLayoutMansory = (props: ArticleLayoutMansory) => {
   const {
@@ -42,17 +55,13 @@ export const ArticleLayoutMansory = (props: ArticleLayoutMansory) => {
             >
               <div className="columns-1 gap-1">
                 <ArticleCard
-                  article={{
-                    image: "/assets/images/article/home/image-3.jpg",
-                  }}
+                  article={listArticle[0]}
                   displayType={cardType}
                   className="min-h-[25rem]"
                   imageStyle="min-h-[25rem]"
                 />
                 <ArticleCard
-                  article={{
-                    image: "/assets/images/article/home/image-2.jpg",
-                  }}
+                  article={listArticle[1]}
                   displayType={cardType}
                   className="min-h-[25rem]"
                   imageStyle="min-h-[25rem]"
@@ -67,16 +76,12 @@ export const ArticleLayoutMansory = (props: ArticleLayoutMansory) => {
             >
               <div className="columns-1 gap-1">
                 <ArticleCard
-                  article={{
-                    image: "/assets/images/article/home/image-5.jpg",
-                  }}
+                  article={listArticle[2]}
                   displayType={cardType}
                   className="min-h-[23.5rem]"
                 />
                 <ArticleCard
-                  article={{
-                    image: "/assets/images/article/home/image-4.jpg",
-                  }}
+                  article={listArticle[3]}
                   displayType={cardType}
                   imageStyle="min-h-[23.5rem]"
                 />
